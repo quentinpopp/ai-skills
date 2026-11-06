@@ -2,7 +2,7 @@
 """Read-only Jira ticket parsing shared by the PO validation and release skills.
 
 * ``adf_to_md``            Atlassian Document Format -> Markdown (descriptions, comments).
-* ``section``              Top-level nodes under a heading, also German and plain-paragraph titles.
+* ``section``              Top-level nodes under a heading, also plain-paragraph titles.
 * ``checklist_items``      Validation Checklist items with their DONE/TODO state.
 * ``collect_jira``         One ticket: type, status, description, ACs, checklist, comments, sub-tasks.
 * ``po_validations``       "PO Validation (YYYY-MM-DD)" comments and addenda parsed into result rows.
@@ -16,7 +16,7 @@ import re
 
 import jira_issue
 
-CHECKLIST_HEADING = re.compile(r"validation\s+checklist|validierungs[\s-]*check(liste)?|prüf(liste|schritte)", re.IGNORECASE)
+CHECKLIST_HEADING = re.compile(r"validation\s+checklist", re.IGNORECASE)
 AC_HEADING = re.compile(r"acceptance\s+criteria|abnahmekriterien|akzeptanzkriterien", re.IGNORECASE)
 # A short plain paragraph without sentence punctuation acts as a section title in hand-written tickets.
 PLAIN_TITLE_MAX = 40
@@ -174,7 +174,7 @@ def checklist_items(doc: dict) -> list[dict]:
 def result_class(result: str) -> str:
     """passed / open / failed / other for a PO Validation result cell."""
     r = (result or "").lower()
-    if "❌" in r or "fail" in r or "nicht ok" in r:
+    if "❌" in r or "fail" in r:
         return "failed"
     if "⏳" in r or "open" in r or "offen" in r:
         return "open"
@@ -198,7 +198,7 @@ def _table_rows(md: str) -> list[dict]:
             header = [c.lower().strip("* ") for c in cells]
             continue
         row = dict(zip(header, cells))
-        item = row.get("item") or row.get("check") or row.get("prüfpunkt") or (cells[1] if len(cells) > 1 else "")
+        item = row.get("item") or row.get("check") or (cells[1] if len(cells) > 1 else "")
         result = row.get("result") or row.get("ergebnis") or (cells[2] if len(cells) > 2 else "")
         evidence = row.get("evidence") or row.get("nachweis") or (cells[3] if len(cells) > 3 else "")
         rows.append({"no": row.get("#", cells[0]), "item": item, "stage": stage_of(item), "result": result,

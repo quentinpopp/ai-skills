@@ -128,7 +128,7 @@ sync with your real workflow.
   `search` uses. A `410` on a search means the endpoint is wrong — not the JQL, not the
   credentials; do not start debugging either.
 - **Rate limiting / transient errors:** rapid successive calls (e.g. looping over tickets with no
-  delay) can intermittently return a misleading `404` ("Die Vorgänge existieren nicht…") even for
+  delay) can intermittently return a misleading `404` (a "tickets do not exist" message) even for
   valid, accessible tickets. Treat a `404` on a ticket already fetched successfully in the same
   session as transient — retry once or twice with a few seconds' delay before reporting it as a
   permissions or existence problem.

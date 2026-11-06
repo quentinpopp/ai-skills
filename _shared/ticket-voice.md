@@ -15,10 +15,10 @@ soften a rule from this file.
 The developer must understand the ticket on one read. Apply these rules to every section, and
 to the chat messages that present the draft.
 
-- **One term per concept.** Choose "campaign" or "record", then keep it. No synonym rotation.
+- **One term per concept.** Choose "item" or "record", then keep it. No synonym rotation.
 - **Short sentences, one statement each.** Target 20 words. Split run-on sentences.
-- **Active voice, present tense, concrete subject.** "CRM keeps the campaign in CREATED", not
-  "the campaign is being kept in CREATED".
+- **Active voice, present tense, concrete subject.** "The item service keeps the item in state A", not
+  "the item is being kept in state A".
 - **Direct statements.** No hedging and no softeners: drop "somewhat", "it seems", "arguably",
   "may potentially", "in some cases" unless the uncertainty is real. If a fact is unconfirmed,
   write "unconfirmed" once.
@@ -26,7 +26,7 @@ to the chat messages that present the draft.
   validation of", "provide support for", "carry out an update".
 - **No marketing and no buzzwords.** No "seamless", "robust", "leverage", "holistic",
   "state-of-the-art", "deep dive", "streamlined", "best-in-class", "synergy".
-- **Facts, not adjectives.** "The campaign stays in CREATED for 6 days" beats "the campaign is
+- **Facts, not adjectives.** "The item stays in state A for 6 days" beats "the item is
   stuck for a very long time".
 - **Lists instead of paragraphs** when three or more items belong together.
 - **Each fact once.** A detail belongs either in the behaviour section or in *Evidence*, not
@@ -45,10 +45,10 @@ mixes all three. The grammar itself says what kind of work the row is.
 
 | Type | Grammar | Example | Anti-example |
 |---|---|---|---|
-| Bug | Symptom, declarative, no imperative | `Predecessor campaign stays in CREATED after a content update` | `Make termination transactional` |
-| Task | Imperative, target behaviour of the delivery process | `Block merges when the commit-msg hook is missing` | `Pipeline is broken` |
-| Epic | `<system prefix>: <verb phrase>` | `FDS: Manage Fleets via FIS API and UI` | `Fleet improvements` |
-| Story | `<system prefix>: <verb phrase>`, inherited from the epic | `FIS: Manage Fleets via FIS API and UI` | `Backend part 2` |
+| Bug | Symptom, declarative, no imperative | `Item stays in state A after an update` | `Make the update transactional` |
+| Task | Imperative, target behaviour of the delivery process | `Block merges when a required check is missing` | `Pipeline is broken` |
+| Epic | `<system prefix>: <verb phrase>` | `Service X: Manage items via API and UI` | `Item improvements` |
+| Story | `<system prefix>: <verb phrase>`, inherited from the epic | `Service X API: Manage items via API and UI` | `Backend part 2` |
 
 Common to all: the PO must still recognise the title six months later. No ticket ID inside the
 title, no fix inside the title.
@@ -58,7 +58,7 @@ title, no fix inside the title.
 ## 3. Acceptance criteria — one layout rule for every type
 
 - **"shall" is binding.** Every AC uses "shall", states observable behaviour, and names the
-  acting system: "FIS shall reject …". "should"/"must" are not AC verbs.
+  acting system: "Service X shall reject …". "should"/"must" are not AC verbs.
 - **What, not how.** An AC never prescribes a class, a method, an annotation or a refactoring.
   Naming an existing endpoint path, error code or data limit is allowed, because it bounds
   scope. Do not invent new identifiers, enum values, field names, UI widgets or colours in an
@@ -105,7 +105,7 @@ never silently drop checks. Automated coverage belongs to the sub-tasks, not her
 
 Bugs add: the reported scenario no longer occurs in the named environment; regression coverage
 fails without the fix; affected records are repaired or a decision not to repair is recorded.
-Tasks add: the rollout and the rollback path are both executed or explicitly deferred.
+Tasks add: the deployment and the rollback path are both executed or explicitly deferred.
 Add only a genuinely distinct completion condition. Never repeat ACs, payload rules or test
 cases in the DoD.
 

@@ -61,7 +61,7 @@ Run these steps in order, then end the turn.
 **Location:** `$HANDOFF_DIR/<TICKET-ID>.md` (env var `HANDOFF_DIR`, e.g. `~/.agent-handoffs`) — one file per ticket, created with
 `New-Item -ItemType Directory -Force` if the folder is missing.
 
-Deliberately **outside any repository**: a story can span several repos (CRM + UI), the file must
+Deliberately **outside any repository**: a story can span several repos (backend + UI), the file must
 never end up in a merge request, and a new session must find it regardless of its working
 directory. Overwrite the same file on every checkpoint — it describes the *current* state, not a
 history.
@@ -127,10 +127,10 @@ The file is the durable record; the chat summary is what the developer actually 
 closing the laptop. Give it as a normal formatted message — **not** inside an `ask_user` — in a
 few sentences plus the resume line:
 
-> **Checkpoint for PROJ-7249 written.** Done: the `CampaignFilter` DTO and its mapper, committed
-> as `feat(api): [#PROJ-7249] add campaign filter DTO`. Next: wire the filter into
-> `CampaignQueryService.search()` (`CampaignQueryService.kt:88`). Open question: whether an empty
-> filter should return all campaigns or none — I did not implement either yet.
+> **Checkpoint for PROJ-7249 written.** Done: the `OrderFilter` DTO and its mapper, committed
+> as `feat(api): [#PROJ-7249] add order filter DTO`. Next: wire the filter into
+> `OrderQueryService.search()` (`OrderQueryService.kt:88`). Open question: whether an empty
+> filter should return all orders or none — I did not implement either yet.
 > Uncommitted: none. Build: green. Sub-task PROJ-7250 is still `In Progress`.
 >
 > **Resume:** `/resume` this session, or start a new one and say

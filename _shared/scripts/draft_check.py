@@ -67,7 +67,7 @@ PASSIVE = re.compile(
 
 # One term per concept. The first entry of a group is the term to keep.
 COMMON_SYNONYM_GROUPS = [
-    ["campaign", "rollout campaign", "campaign entity"],
+    ["item", "entry", "record entity"],
     ["stage", "environment", "deployment target"],
     ["user", "operator", "actor", "end user"],
     ["request", "call", "invocation"],
